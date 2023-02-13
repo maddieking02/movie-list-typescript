@@ -12,11 +12,11 @@ interface Movies {
 }
 
 var movies: Movies[]  = [
-  {title: 'Mean Girls'},
-  {title: 'Hackers'},
-  {title: 'The Grey'},
-  {title: 'Sunshine'},
-  {title: 'Ex Machina'},
+  {title: 'Mean Girls', watched: 0},
+  {title: 'Hackers', watched: 0},
+  {title: 'The Grey', watched: 0},
+  {title: 'Sunshine', watched: 0},
+  {title: 'Ex Machina', watched: 0},
 ];
 
 const App = (): JSX.Element => {
@@ -27,7 +27,7 @@ const App = (): JSX.Element => {
 
   const filtered: Movies[] = [];
   master.forEach((movie: Movies) => {
-    if (movie.title.toLowerCase().includes(query.toLowerCase())) {
+    if (movie.watched === watched && movie.title.toLowerCase().includes(query.toLowerCase())) {
       filtered.push(movie);
     }
   })
@@ -37,6 +37,18 @@ const App = (): JSX.Element => {
     var temp = [newMovie, ...master];
     setMaster(temp);
     setNewEntry('');
+  }
+
+  const toggle = (entry: Movies) : void => {
+    var temp = [...master];
+    temp.forEach((movie) => {
+      if (movie.title === entry.title && entry.watched === 0) {
+        entry.watched = 1;
+      } else if (movie.title === entry.title && entry.watched === 1) {
+        entry.watched = 0;
+      }
+    })
+    setMaster(temp);
   }
 
   return (
@@ -53,7 +65,7 @@ const App = (): JSX.Element => {
         <button onClick={() => {setWatched(1)}}>Watched</button>
       </div>
       <div>
-        <List filtered={filtered} setMaster={setMaster}></List>
+        <List filtered={filtered} setMaster={setMaster} toggle={toggle}></List>
       </div>
     </div>
   )

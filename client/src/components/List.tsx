@@ -11,14 +11,15 @@ interface Movies {
 interface MovieProps {
   filtered: Movies[];
   setMaster: React.Dispatch<SetStateAction<Movies[]>>;
+  toggle: any;
 }
 
-const List = ({ filtered }: MovieProps): JSX.Element => {
+const List = ({ filtered, toggle }: MovieProps): JSX.Element => {
 
   return (
     <div>
       {filtered.length > 0 ? filtered.map((entry, idx) => {
-        return <Entry entry={entry} key={idx}></Entry>
+        return <Entry entry={entry} key={idx} toggle={toggle}></Entry>
       }) : <div>no movie by that name found</div>}
     </div>
   )
