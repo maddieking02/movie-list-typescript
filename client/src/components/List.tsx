@@ -3,7 +3,7 @@ import Entry from './Entry';
 
 interface Movies {
   title: string;
-  watched?: boolean;
+  watched?: number;
 }
 
 interface MovieProps {

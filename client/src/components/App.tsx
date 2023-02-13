@@ -1,10 +1,11 @@
 import React, {useState, useEffect } from 'react';
 import List from './List';
 import Search from './Search';
+import Add from './Add';
 
 interface Movies {
   title: string;
-  watched?: boolean;
+  watched?: number; // binary
 }
 
 var movies: Movies[]  = [
@@ -18,6 +19,7 @@ var movies: Movies[]  = [
 const App = (): JSX.Element => {
   const [master, setMaster] = useState<Movies[] | []>(movies);
   const [query, setQuery] = useState<string | ''>('');
+  const [newEntry, setNewEntry] = useState<string | ''>('');
 
   const filtered: Movies[] = [];
   master.forEach((movie: Movies) => {
@@ -26,9 +28,18 @@ const App = (): JSX.Element => {
     }
   })
 
+  const handleNewEntry = (newEntry: string) : void => {
+    var newMovie: Movies = {title: newEntry, watched: 0};
+    var temp = [newMovie, ...master];
+    setMaster(temp);
+  }
+
   return (
     <div id='app'>
       <h1>Movie List</h1>
+      <div>
+        <Add newEntry={newEntry} setNewEntry={setNewEntry} handleNewEntry={handleNewEntry}></Add>
+      </div>
       <div>
         <Search query={query} setQuery={setQuery}></Search>
       </div>

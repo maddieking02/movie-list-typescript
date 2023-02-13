@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface MovieProps {
-  entry: { title: string; watched?: boolean; };
+  entry: { title: string; watched?: number; };
 }
 
 const Entry = ({ entry }: MovieProps): JSX.Element => {

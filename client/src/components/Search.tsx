@@ -1,4 +1,4 @@
-import React, { SetStateAction } from 'react'
+import React, { SetStateAction } from 'react';
 
 interface MovieProps {
   query: string;
