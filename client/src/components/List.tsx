@@ -1,9 +1,11 @@
 import React, { SetStateAction } from 'react';
 import Entry from './Entry';
 
+type Binary = 0 | 1;
+
 interface Movies {
   title: string;
-  watched?: number;
+  watched?: Binary;
 }
 
 interface MovieProps {

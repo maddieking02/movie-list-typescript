@@ -1,7 +1,9 @@
 import React from 'react';
 
+type Binary = 0 | 1;
+
 interface MovieProps {
-  entry: { title: string; watched?: number; };
+  entry: { title: string; watched?: Binary; };
 }
 
 const Entry = ({ entry }: MovieProps): JSX.Element => {

@@ -1,11 +1,14 @@
 import React, {useState, useEffect } from 'react';
+import axios from 'axios';
 import List from './List';
 import Search from './Search';
 import Add from './Add';
 
+type Binary = 0 | 1;
+
 interface Movies {
   title: string;
-  watched?: number; // binary
+  watched?: Binary;
 }
 
 var movies: Movies[]  = [
@@ -20,6 +23,7 @@ const App = (): JSX.Element => {
   const [master, setMaster] = useState<Movies[] | []>(movies);
   const [query, setQuery] = useState<string | ''>('');
   const [newEntry, setNewEntry] = useState<string | ''>('');
+  const [watched, setWatched] = useState<Binary | 0>(0);
 
   const filtered: Movies[] = [];
   master.forEach((movie: Movies) => {
@@ -32,6 +36,7 @@ const App = (): JSX.Element => {
     var newMovie: Movies = {title: newEntry, watched: 0};
     var temp = [newMovie, ...master];
     setMaster(temp);
+    setNewEntry('');
   }
 
   return (
@@ -42,6 +47,10 @@ const App = (): JSX.Element => {
       </div>
       <div>
         <Search query={query} setQuery={setQuery}></Search>
+      </div>
+      <div>
+        <button onClick={() => {setWatched(0)}}>To Watch</button>
+        <button onClick={() => {setWatched(1)}}>Watched</button>
       </div>
       <div>
         <List filtered={filtered} setMaster={setMaster}></List>
