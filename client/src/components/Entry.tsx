@@ -4,10 +4,10 @@ interface MovieProps {
   entry: { title: string; watched?: boolean; };
 }
 
-const Entry = (props: MovieProps): JSX.Element => {
+const Entry = ({ entry }: MovieProps): JSX.Element => {
   return (
     <div>
-      <div>{props.entry.title}</div>
+      <div>{entry.title}</div>
     </div>
   )
 };

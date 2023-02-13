@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import List from './List';
+import Search from './Search';
 
 interface Movies {
   title: string;
@@ -16,10 +17,14 @@ var movies: Movies[]  = [
 
 const App = (): JSX.Element => {
   const [master, setMaster] = useState<Movies[] | []>(movies);
+  const [query, setQuery] = useState<string | ''>('');
 
   return (
     <div id='app'>
       <h1>Movie List</h1>
+      <div>
+        <Search query={query} setQuery={setQuery}></Search>
+      </div>
       <div>
         <List master={master} setMaster={setMaster}></List>
       </div>

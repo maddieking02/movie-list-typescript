@@ -11,11 +11,11 @@ interface MovieProps {
   setMaster: React.Dispatch<SetStateAction<Movies[]>>;
 }
 
-const List = (props: MovieProps): JSX.Element => {
+const List = ({ master }: MovieProps): JSX.Element => {
 
   return (
     <div>
-      {props.master.map((entry, idx) => {
+      {master.map((entry, idx) => {
         return <Entry entry={entry} key={idx}></Entry>
       })}
     </div>
