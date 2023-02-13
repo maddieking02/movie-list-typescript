@@ -7,17 +7,17 @@ interface Movies {
 }
 
 interface MovieProps {
-  master: Movies[];
+  filtered: Movies[];
   setMaster: React.Dispatch<SetStateAction<Movies[]>>;
 }
 
-const List = ({ master }: MovieProps): JSX.Element => {
+const List = ({ filtered }: MovieProps): JSX.Element => {
 
   return (
     <div>
-      {master.map((entry, idx) => {
+      {filtered.length > 0 ? filtered.map((entry, idx) => {
         return <Entry entry={entry} key={idx}></Entry>
-      })}
+      }) : <div>no movie by that name found</div>}
     </div>
   )
 };
