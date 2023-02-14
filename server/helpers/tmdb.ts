@@ -3,13 +3,16 @@ require('dotenv').config();
 // dotenv.config();
 import axios from 'axios';
 
-
-let getMovies = () => {
+export const searchMovie = (query: string) => {
   const auth = {
-    url: `https://api.themoviedb.org/3/movie/550?api_key=${process.env.API_KEY}`,
-    // url: 'https://api.themoviedb.org/3/movie/550?api_key=2989654f904cb9c939ae1ea6e072c122',
+    url: `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&query=${query}`,
   }
   return axios.get(auth.url);
 }
 
-module.exports = getMovies;
+export const getMovie = (id: number) => {
+  const auth = {
+    url: `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}`,
+  }
+  return axios.get(auth.url);
+}
