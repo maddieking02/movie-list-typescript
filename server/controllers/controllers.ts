@@ -12,14 +12,14 @@ interface MovieInfo {
 export const controllers = {
   getInfo: (req: any, res: any) => {
     searchMovie(req.query.title)
-    .then((res: any) => {
-      getMovie(res.data.results[0].id)
-      .then((res: any) => {
+    .then((response: any) => {
+      getMovie(response.data.results[0].id)
+      .then((result: any) => {
         const movieInfo: MovieInfo = {
-          overview: res.data.overview,
-          release_date: res.data.release_date,
-          runtime: res.data.runtime,
-          vote_average: res.data.vote_average,
+          overview: result.data.overview,
+          release_date: result.data.release_date,
+          runtime: result.data.runtime,
+          vote_average: result.data.vote_average,
         }
         console.log('this is movieInfo', movieInfo)
         res.status(200).send(movieInfo);
