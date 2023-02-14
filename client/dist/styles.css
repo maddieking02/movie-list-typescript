@@ -11,6 +11,12 @@ html, body {
   flex-direction: column;
 }
 
+#watched-btn {
+  font-size: 22px;
+  height: fit-content;
+  width: fit-content;
+}
+
 #movie-overview {
   font-size: 22px;
 }
