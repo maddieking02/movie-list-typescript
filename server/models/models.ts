@@ -1,4 +1,4 @@
-const db = require('./db/db');
+import { db } from '../db/db';
 
 export const models = {
   get: (callback: any) => {
