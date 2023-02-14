@@ -1,6 +1,33 @@
 html, body {
   background-color: black;
   font-family: sans-serif, arial;
-  font-size: 22px;
+  font-size: 32px;
   color: whitesmoke;
+}
+
+/* -- entry.tsx */
+#movie-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#movie-overview {
+  font-size: 22px;
+}
+
+#movie-img {
+  height: auto;
+  width: 100px;
+}
+
+#movie-release {
+  font-size: 22px;
+}
+
+#movie-runtime {
+  font-size: 22px;
+}
+
+#movie-vote {
+  font-size: 22px;
 }
