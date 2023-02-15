@@ -53,7 +53,7 @@ const App = (): JSX.Element => {
 
   return (
     <div id='app'>
-      <h1>Movie List</h1>
+      <h1 id="app-header">MovieList</h1>
       <div>
         <Add newEntry={newEntry} setNewEntry={setNewEntry} handleNewEntry={handleNewEntry}></Add>
       </div>

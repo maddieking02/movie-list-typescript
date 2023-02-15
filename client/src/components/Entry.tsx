@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { IoMdArrowDropdown, IoMdArrowDropup  } from "react-icons/io";
 import axios from 'axios';
 
 type Binary = 0 | 1;
@@ -9,7 +10,7 @@ interface MovieProps {
 }
 
 const Entry = ({ entry, toggle }: MovieProps): JSX.Element => {
-  const [display, setDisplay] = useState<boolean | false>(false);
+  const [open, setOpen] = useState<boolean | false>(false);
   const [overview, setOverview] = useState<string | null>(null);
   const [poster, setPoster] = useState<string | null>(null);
   const [release, setRelease] = useState<string | null>(null);
@@ -21,7 +22,7 @@ const Entry = ({ entry, toggle }: MovieProps): JSX.Element => {
     console.log('title', title);
     axios.get('/api/movies/info', { params: { title } })
       .then((res: any) => {
-        setDisplay(true);
+        setOpen(true);
         setOverview(res.data.overview);
         setPoster(res.data.poster_path);
         setRelease(res.data.release_date);
@@ -33,11 +34,24 @@ const Entry = ({ entry, toggle }: MovieProps): JSX.Element => {
       })
   }
 
+  const handleCollapse = (): void => {
+    setOpen(false);
+    setOverview(null);
+    setPoster(null);
+    setRelease(null);
+    setRuntime(null);
+    setVote(null);
+  }
+
   return (
     <div>
-      <div data-title={entry.title} onClick={ handleTitleClick.bind(this) }>{entry.title}
+      <div>
+          {entry.title}
+          {open === false
+            ? <IoMdArrowDropdown data-title={entry.title} onClick={ handleTitleClick.bind(this) }/>
+            : <IoMdArrowDropup onClick={ () => handleCollapse() }/>}
         <div id="movie-container">
-          {display === true ? <button id="watched-btn" onClick={() => toggle(entry)}>{entry.watched === 0 ? 'To Watch' : 'Watched'}</button> : null}
+          {open === true ? <button id="watched-btn" onClick={ () => { toggle(entry); handleCollapse(); } }>{entry.watched === 0 ? 'To Watch' : 'Watched'}</button> : null}
           {overview !== null ? <div id="movie-overview">Summary: {overview}</div> : null}
           {poster !== null ? <img id="movie-img" src={poster} alt=''></img> : null}
           {release !== null ? <div id="movie-release">Release Date: {release}</div> : null}

@@ -5,6 +5,17 @@ html, body {
   color: whitesmoke;
 }
 
+/* -- app.tsx */
+#app-header {
+  background-color: rgb(255, 174, 0);
+  font-size: 38px;
+  color: black;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 25px;
+  padding: 0.5em;
+}
+
 /* -- entry.tsx */
 #movie-container {
   display: flex;
