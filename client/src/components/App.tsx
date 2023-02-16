@@ -53,19 +53,23 @@ const App = (): JSX.Element => {
 
   return (
     <div id='app'>
-      <h1 id="app-header">MovieList</h1>
-      <div>
-        <Add newEntry={newEntry} setNewEntry={setNewEntry} handleNewEntry={handleNewEntry}></Add>
+      <div id="container-1">
+        <h1 id="app-header">MovieList</h1>
+        <div>
+          <Add newEntry={newEntry} setNewEntry={setNewEntry} handleNewEntry={handleNewEntry}></Add>
+        </div>
+        <div>
+          <Search query={query} setQuery={setQuery}></Search>
+        </div>
       </div>
-      <div>
-        <Search query={query} setQuery={setQuery}></Search>
-      </div>
-      <div>
-        <button onClick={() => {setWatched(0)}}>To Watch</button>
-        <button onClick={() => {setWatched(1)}}>Watched</button>
-      </div>
-      <div>
-        <List filtered={filtered} setMaster={setMaster} toggle={toggle}></List>
+      <div id="container-2">
+        <div>
+          <button className="watched-btn btn" onClick={() => {setWatched(0)}}>To Watch</button>
+          <button className="watched-btn btn" onClick={() => {setWatched(1)}}>Watched</button>
+        </div>
+        <div>
+          <List filtered={filtered} setMaster={setMaster} toggle={toggle}></List>
+        </div>
       </div>
     </div>
   )

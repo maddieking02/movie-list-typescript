@@ -9,8 +9,8 @@ interface MovieProps {
 const Add = ({ newEntry, setNewEntry, handleNewEntry }: MovieProps): JSX.Element => {
   return (
     <div>
-      <input type='text' placeholder='Add movie title here' value={newEntry} onChange={(e) => {setNewEntry(e.target.value)}}></input>
-      <button onClick={() => handleNewEntry(newEntry)}>Add</button>
+      <input id="add-input" type='text' placeholder='Add movie title here' value={newEntry} onChange={(e) => {setNewEntry(e.target.value)}}></input>
+      <button id="add-btn" onClick={() => handleNewEntry(newEntry)}>Add</button>
     </div>
   )
 };

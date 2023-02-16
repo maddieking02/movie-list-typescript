@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IoMdArrowDropdown, IoMdArrowDropup  } from "react-icons/io";
+import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios';
 
 type Binary = 0 | 1;
@@ -49,15 +50,19 @@ const Entry = ({ entry, toggle }: MovieProps): JSX.Element => {
           {entry.title}
           {open === false
             ? <IoMdArrowDropdown data-title={entry.title} onClick={ handleTitleClick.bind(this) }/>
-            : <IoMdArrowDropup onClick={ () => handleCollapse() }/>}
-        <div id="movie-container">
-          {open === true ? <button id="watched-btn" onClick={ () => { toggle(entry); handleCollapse(); } }>{entry.watched === 0 ? 'To Watch' : 'Watched'}</button> : null}
-          {overview !== null ? <div id="movie-overview">Summary: {overview}</div> : null}
-          {poster !== null ? <img id="movie-img" src={poster} alt=''></img> : null}
-          {release !== null ? <div id="movie-release">Release Date: {release}</div> : null}
-          {runtime !== null ? <div id="movie-runtime">Runtime: {runtime}</div> : null}
-          {vote !== null ? <div id="movie-vote">Rating Average: {vote}</div> : null}
-        </div>
+            : <div><IoMdArrowDropup onClick={ () => handleCollapse() }/><AiFillDelete/></div>}
+          {open === true ? <div id="movie-container">
+          <div id="info-container">
+            <button className="entry-btn" onClick={ () => { toggle(entry); handleCollapse(); } }>{entry.watched === 0 ? 'To Watch' : 'Watched'}</button>
+            {overview !== null ? <div id="movie-overview" style={{ margin: '1em 0 0.5em 0'}}>Summary: {overview}</div> : null}
+            {release !== null ? <div id="movie-release" style={{ margin: '0 0 0.5em 0'}}>Release Date: {release}</div> : null}
+            {runtime !== null ? <div id="movie-runtime" style={{ margin: '0 0 0.5em 0'}}>Runtime: {runtime}</div> : null}
+            {vote !== null ? <div id="movie-vote">Rating Average: {vote}</div> : null}
+          </div>
+          <div id="img-container">
+            {poster !== null ? <img id="movie-img" src={poster} alt=''></img> : null}
+          </div>
+        </div> : null }
       </div>
     </div>
   )

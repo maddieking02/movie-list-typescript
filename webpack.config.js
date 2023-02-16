@@ -18,7 +18,15 @@ module.exports = {
         use: {
           loader: "ts-loader",
         }
-      }
+      },
+      {
+        test: /\.(png|jpeg|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+          outputPath: "imgs",
+        },
+      },
     ],
   },
   resolve: {

@@ -8,8 +8,8 @@ interface MovieProps {
 const Search = ({ query, setQuery }: MovieProps): JSX.Element => {
   return (
     <div>
-      <input type='text' placeholder='Search...' value={query} onChange={(e) => setQuery(e.target.value)}></input>
-      <button onClick={() => setQuery(query)}>Go!</button>
+      <input id="search-input" type='text' placeholder='Search...' value={query} onChange={(e) => setQuery(e.target.value)}></input>
+      <button id="search-btn" onClick={() => setQuery(query)}>Go</button>
     </div>
   )
 };

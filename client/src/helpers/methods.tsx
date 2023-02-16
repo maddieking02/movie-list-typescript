@@ -18,24 +18,13 @@ export const getData = () => {
     })
 }
 
-export const postData = (entry: Movies) => {
-  axios.post('/api/movies', entry)
+export const deleteData = (entry: Movies) => {
+  axios.delete('/api/movies', { data: entry })
     .then((res: any) => {
       console.log('movie successfully added')
       getData();
     })
     .catch((err: unknown) => {
       console.log('failed to add movie')
-    })
-}
-
-export const patchData = (entry: Movies) => {
-  axios.patch('/api/movies', entry)
-    .then((res: any) => {
-      console.log('movie successfully patched')
-      getData();
-    })
-    .catch((err: unknown) => {
-      console.log('movie failed to patch')
     })
 }
